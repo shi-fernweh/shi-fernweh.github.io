@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Libro | Shi Fernweh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">SHI FERNWEH</a>
+        
+        <button class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">INICIO</a></li>
+            <li><a href="../sobremi.html">SOBRE MÍ</a></li>
+            <li><a href="../libros.html">LIBROS</a></li>
+            <li><a href="../contacto.html">CONTACTO</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <main>
+        <section class="book-detail-section">
+            
+            <div class="book-info-col">
+
+                    <a href="../libros.html" class="back-btn">← Volver a Libros</a>
+
+                <h1>Título de la Novela</h1>
+                <p class="book-slogan">"Una frase impactante que defina la esencia de tu historia."</p>
+                
+                <div class="synopsis">
+                    <p>Aquí va la sinopsis de tu historia. Puedes separar los párrafos para que la lectura sea más cómoda. Recuerda que este espacio está diseñado para atrapar al lector con la intriga de tus tramas de thriller o paranormal.</p>
+                </div>
+
+                <div class="buy-buttons-row">
+                    <a href="#" class="btn-social-sm" target="_blank">Amazon</a>
+                    <a href="#" class="btn-social-sm" target="_blank">Patreon</a>
+                    <a href="#" class="btn-social-sm" target="_blank">Booknet</a>
+                </div>
+
+                <a href="javascript:void(0)" class="read-chapter-btn" id="openModal">Lee el primer capítulo</a>
+
+                    <div id="chapterModal" class="modal-overlay">
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <div class="chapter-reader">
+                                <h2 class="chapter-title">Capítulo 1: Título del Capítulo</h2>
+                                <div class="chapter-body">
+                                    <p>Aquí comienza el cuerpo de tu historia. Este texto mantendrá la tipografía elegante de tu sitio, con un tamaño de fuente de 12pt y alineación justificada para que la lectura sea profesional y cómoda, similar a la de un libro físico.</p>
+                                    <p>Puedes añadir tantos párrafos como desees; el cuadro permitirá hacer scroll vertical sin perder de vista el botón de cerrar. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore modi quidem cumque velit! Quod magnam voluptas reprehenderit eum quis ipsum rerum perferendis ex delectus, accusamus necessitatibus consequatur recusandae sunt enim!</p>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque ipsam adipisci commodi error nostrum itaque totam soluta voluptate praesentium. Cupiditate labore nulla ratione molestiae laborum optio modi culpa corrupti consequuntur!</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tempora quos esse tempore perferendis dolorum saepe culpa, voluptatum odit eius suscipit eaque repellendus minima quas impedit optio doloribus totam laudantium. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore incidunt totam a officiis recusandae ipsa atque, laborum alias at sed earum quo ipsum vel amet dolore ea aliquam? Optio, voluptas.</p>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit maxime voluptates minus dolores omnis deleniti ipsum pariatur error nesciunt autem. Tenetur quo fugit excepturi beatae laudantium perferendis corrupti vitae consequatur? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae esse, culpa facilis nihil debitis enim placeat dignissimos a maxime quisquam alias distinctio aut iste quaerat ad voluptatibus officiis unde architecto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quidem minus optio nisi repellendus tempora id, quaerat dignissimos iusto voluptatibus, reiciendis non molestias ea? Obcaecati cumque inventore vitae numquam ipsa.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="book-cover-col">
+                <img src="../images/portada.png" alt="Portada de la novela" class="book-detail-cover">
+            </div>
+
+        </section>
+
+        <section class="related-series-section">
+            <h3>También en esta serie</h3>
+            <div class="related-grid">
+                <a href="otra-novela-1.html" class="related-item">
+                    <img src="../images/portada.png" alt="Título libro relacionado">
+                </a>
+                <a href="otra-novela-2.html" class="related-item">
+                    <img src="../images/portada.png" alt="Título libro relacionado">
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <span class="footer-logo">SHI FERNWEH</span>
+        <div class="social-buttons">
+            <a href="#" class="btn-social" target="_blank">Instagram</a>
+            <a href="#" class="btn-social" target="_blank">Facebook</a>
+            <a href="#" class="btn-social" target="_blank">Goodreads</a>
+            <a href="#" class="btn-social" target="_blank">Patreon</a>
+            <a href="#" class="btn-social" target="_blank">Booknet</a>
+        </div>
+        <p class="copy">&copy; <span id="current-year"></span> Shi Fernweh. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>

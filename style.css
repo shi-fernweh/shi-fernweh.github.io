@@ -1,0 +1,936 @@
+/* Variables de Color */
+:root {
+    --bg-color: #e3e2da;
+    --primary: #0b272a;
+    --secondary: #244747;
+    --accent-1: #4e706b;
+    --accent-2: #7b9c92;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth; /* Hace que el salto entre secciones sea fluido */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    
+    /* --- LA MAGIA DEL FONDO --- */
+    background-image: 
+        /* 1. El filtro oscuro (ajusta el 0.7 para hacerlo más claro o más oscuro) */
+        linear-gradient(rgba(11, 39, 42, 0.7), rgba(11, 39, 42, 0.40)), 
+        /* 2. Tu imagen de fondo */
+        url('../images/header3.png'); 
+        
+    background-size: cover; /* Asegura que la imagen llene todo el espacio sin deformarse */
+    background-position: center center; /* Centra la parte más importante de la imagen */
+    background-repeat: no-repeat;
+    
+    /* Opcional: Esto crea un efecto "Parallax" muy elegante al hacer scroll */
+    background-attachment: fixed; 
+}
+
+/* Asegurarnos de que el texto resalte sobre el fondo oscuro */
+header h1 {
+    color: #ffffff; /* Letras blancas para contrastar */
+    font-size: 4.5rem; /* Asegúrate de que el tamaño sea imponente */
+    margin-bottom: 10px;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Sombra suave para darle más relieve */
+}
+
+header .subtitle {
+    color: #e0e0e0;
+    font-size: 0.95rem; 
+    font-weight: 400;
+    text-transform: uppercase; 
+    white-space: nowrap; 
+    
+    /* --- EL FIX DE CENTRADO PARA ESCRITORIO --- */
+    max-width: none; /* Quitamos el límite de 800px para que el texto pueda centrarse libremente */
+    letter-spacing: 4px; 
+    padding-left: 4px; /* Empuja todo el texto 4px a la derecha para compensar el hueco que deja la última letra */
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin: 0;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    max-width: 600px;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+/* Navbar Sticky */
+nav {
+    background-color: var(--primary);
+    padding: 15px 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; /* Centrado en escritorio */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo oculto en escritorio, visible en móvil */
+.nav-logo {
+    display: none; 
+    color: var(--bg-color);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Estilos de la lista de enlaces */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 25px;
+}
+
+.nav-links li a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-2);
+}
+
+/* Botón Hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
+}
+
+/* --- MEDIA QUERY: MÓVIL (768px o menos) --- */
+@media (max-width: 768px) {
+    .nav-container {
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .nav-logo, .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none; /* Se oculta para el menú desplegable */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav-links.active {
+        display: flex; /* Clase activada por JS */
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* Animación de la hamburguesa a X */
+    .menu-toggle.is-active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.is-active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.is-active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+.menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Sección Estrenos */
+.section-container {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--secondary);
+}
+
+.grid-estrenos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    background: rgba(255, 255, 255, 0.538);
+    padding: 20px;
+    border: 1px solid var(--accent-1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 92%; /* Se adaptará al ancho de la columna del grid */
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+}
+
+.cover-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: var(--accent-2);
+    overflow: hidden;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-color);
+}
+
+.cover-uped {
+    aspect-ratio: auto;
+    height: auto;
+}
+
+/* Ajuste de la imagen dentro del recuadro */
+.cover-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para que rellene el cuadro sin deformarse */
+    display: block;
+}
+
+.release-date {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+/* --- FOOTER CON IMAGEN --- */
+footer {
+    padding: 60px 20px 40px 20px; /* Buen espacio para respirar */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+    /* --- LA MAGIA DEL FONDO EN EL FOOTER --- */
+    background-image: 
+        /* Un degradado un poco más oscuro que el del header para asentar el final de la página */
+        linear-gradient(rgba(11, 39, 42, 0.85), rgba(11, 39, 42, 0.95)), 
+        url('../images/header3.png'); /* Asegúrate de que este sea el nombre exacto */
+        
+    background-size: cover;
+    background-position: center bottom; /* Alineamos la imagen hacia abajo */
+    background-attachment: fixed; /* Mantiene el efecto Parallax elegante */
+    background-repeat: no-repeat;
+    
+    /* Forzamos a que el texto general sea claro */
+    color: #e0e0e0; 
+}
+
+/* El logo del footer */
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ffffff; /* Letras blancas para que resalte */
+}
+
+/* Botones sociales */
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.social-buttons .btn-social {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil blanco */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.social-buttons .btn-social:hover {
+    background-color: #ffffff;
+    color: var(--primary); /* Que cambie al color oscuro principal al pasar el mouse */
+}
+
+/* El texto de copyright */
+.copy {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5); /* Blanco a la mitad de opacidad para no robar atención */
+    margin-top: 20px;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    nav ul { flex-direction: column; }
+    nav ul li { margin: 10px 0; }
+}
+
+
+
+
+/* --- ESTILOS PARA LA PÁGINA SOBRE MÍ --- */
+.about-section {
+    padding: 80px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.about-image-wrapper {
+    flex: 1 1 300px;
+    max-width: 450px;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4; /* Crea el efecto de rectángulo alargado */
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px rgba(11, 39, 42, 0.15); /* Sombra con tu color primario */
+}
+
+.about-text {
+    flex: 2 1 400px;
+}
+
+.about-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.about-text p {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    text-align: justify;
+    color: var(--primary);
+}
+
+.about-social-wrapper {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- GRID DE REDES SOCIALES EN SOBRE MÍ --- */
+.about-social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas idénticas */
+    gap: 15px; /* Espacio uniforme entre los botones, tanto vertical como horizontal */
+    width: 100%;
+    margin-top: -26px; 
+}
+
+/* Aseguramos que los enlaces llenen su recuadro */
+.about-social-grid .btn-social-sm {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    /* Los demás estilos (color, fondo, padding) los heredará 
+       automáticamente de tu clase .btn-social-sm original */
+}
+
+/* --- RESPONSIVE --- */
+/* En tablets y móviles, pasamos a 2 columnas para que no se aplasten */
+@media (max-width: 768px) {
+    .about-social-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 480px) {
+    .about-social-grid {
+        grid-template-columns: 1fr; /* 1 columna en teléfonos pequeños */
+    }
+}
+
+.btn-social-sm {
+    padding: 10px 20px;
+    border: 1px solid var(--accent-2);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    background: #244747;
+}
+
+.btn-social-sm:hover {
+    background-color: var(--accent-1);
+    border-color: var(--accent-1);
+}
+
+
+
+/* --- ESTILOS PARA LA PÁGINA LIBROS --- */
+.books-page-section {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.books-page-section h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+}
+
+.books-subtitle {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: -40px; 
+    margin-bottom: 15px; 
+}
+
+/* --- ESTILO DEL NUEVO BOTÓN DE ORDEN --- */
+.sorting-options {
+    margin-bottom: 50px; /* Esto empujará la cuadrícula de portadas hacia abajo */
+}
+
+.sort-btn {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--accent-2);
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.sort-btn:hover {
+    background-color: var(--accent-1);
+    color: var(--bg-color);
+    border-color: var(--accent-1);
+}
+
+.books-grid { /* O la clase que use el contenedor de tus 3 divs */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Esto crea el espacio entre los tres divs */
+    padding: 20px 0;
+}
+
+.books-grid-large {
+    display: grid;
+    /* Esto crea columnas automáticas. En pantallas grandes serán 4 o 5, en móviles 1 o 2 */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+/* El contenedor del libro sí mantiene el tamaño para que el grid sea simétrico */
+.book-item {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    display: flex;
+    align-items: center; /* Centra la imagen verticalmente si es más baja */
+    justify-content: center; /* Centra la imagen horizontalmente si es más flaca */
+    background-color: transparent !important; /* Quita cualquier fondo */
+    box-shadow: none !important; /* Quita cualquier sombra de caja */
+    border: none !important; /* Por si acaso hay un borde sutil */
+    outline: none !important;
+}
+
+.book-link {
+    width: 100%;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.book-cover-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    background-color: transparent; 
+    display: block;
+    aspect-ratio: 2 / 3;
+    box-shadow: none;
+}
+
+/*.book-cover-img {
+    width: 100%;
+    aspect-ratio: 600/800; 
+    background-color: var(--accent-1);
+    object-fit: contain;
+    border-radius: 0;
+    box-shadow: 0 8px 20px rgba(11, 39, 42, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+*/
+
+.book-item:hover .book-cover-img {
+    box-shadow: none !important; 
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); 
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.book-link:hover .book-cover-img {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(11, 39, 42, 0.16);
+}
+
+/* --- CLASES PARA LA ANIMACIÓN SCROLL (ZOOM IN) --- */
+.zoom-in-element {
+    opacity: 0;
+    transform: scale(0.95); /* Empieza un poco más pequeño */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Esta clase se añadirá con JavaScript cuando el elemento entre en pantalla */
+.zoom-in-element.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* --- ESTILOS PARA LA PÁGINA DE SERIES --- */
+.series-container {
+    padding: 40px 10% 80px;
+}
+
+.series-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.series-section {
+    margin-bottom: 100px; /* Espacio generoso entre sagas */
+}
+
+.series-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--secondary);
+    text-align: left;
+    border-bottom: 1px solid var(--accent-2);
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+}
+
+/* Ajuste para que las series se vean bien incluso con pocos libros */
+.series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+
+
+/* --- ESTILOS PARA DETALLE DE LIBRO --- */
+.book-detail-section {
+    padding: 60px 10%;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.book-info-col {
+    flex: 1 1 500px;
+}
+
+.book-info-col h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+/* Estilo para el eslogan o frase de la novela */
+.book-slogan {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--accent-1); /* Un tono que destaque pero sea elegante */
+    margin-bottom: 25px;
+    line-height: 1.4;
+    border-left: 3px solid var(--accent-2);
+    padding-left: 15px;
+}
+
+.synopsis {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-align: justify;
+}
+
+/* Grupo de 3 botones */
+.buy-buttons-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.buy-buttons-row .btn-social-sm {
+    flex: 1; /* Hace que los 3 ocupen el mismo ancho */
+    text-align: center;
+    padding: 15px 5px;
+}
+
+/* Botón de ancho completo */
+.read-chapter-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* <-- Esta es la regla que arregla el desbordamiento */
+    background-color: var(--primary);
+    color: var(--bg-color);
+    text-decoration: none;
+    text-align: center;
+    padding: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 0.3s;
+    border: 1px solid var(--primary);
+}
+
+.read-chapter-btn:hover {
+    background-color: var(--accent-1);
+    border-color: var(--accent-1);
+}
+
+/* Columna de la Portada */
+.book-cover-col {
+    flex: 0 1 450px;
+    position: relative; /* Mantiene a la imagen en el flujo normal, no fixed */
+    z-index: 10;
+    margin-top: 140px;
+}
+
+.book-detail-cover {
+    width: 100%;
+    aspect-ratio: 600 / 800; /* Proporción exacta solicitada */
+    object-fit: contain;
+    box-shadow: 0 15px 40px rgba(11, 39, 42, 0.2);
+}
+
+@media (max-width: 992px) {
+    .book-detail-section { flex-direction: column-reverse; align-items: center; }
+    .book-info-col { width: 100%; }
+    .book-info-col h1 { font-size: 2.2rem; text-align: center; }
+}
+
+/* Botón de Volver Atrás */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.back-btn:hover {
+    color: var(--accent-1);
+}
+
+/* --- ESTILOS DEL MODAL DE LECTURA --- */
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 39, 42, 0.85); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-color); /* Fondo claro consistente */
+    margin: 5% auto;
+    padding: 40px;
+    width: 80%;
+    max-width: 800px;
+    height: 70vh;
+    border-radius: 0; /* Bordes rectos como tus portadas */
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--primary);
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.chapter-reader {
+    height: 100%;
+    overflow-y: auto; /* Permite el scroll interno */
+    padding-right: 15px;
+}
+
+.chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.chapter-body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;
+    line-height: 1.8;
+    color: var(--primary);
+    text-align: justify;
+}
+
+/* Scrollbar personalizado */
+.chapter-reader::-webkit-scrollbar { width: 6px; }
+.chapter-reader::-webkit-scrollbar-track { background: var(--bg-color); }
+.chapter-reader::-webkit-scrollbar-thumb { background: var(--accent-2); border-radius: 10px; }
+
+/* 5. Responsive */
+@media (max-width: 992px) {
+    .book-title-main { font-size: 3.5rem; }
+    .book-detail-grid { flex-direction: column; align-items: center; }
+    .book-cover-col { margin-top: 0; max-width: 300px; order: -1; } /* Imagen arriba en móvil */
+    .book-info-col { width: 100%; }
+    .book-detail-section { 
+        display: flex; 
+        flex-direction: column; /* Apila normal: texto arriba, imagen abajo */
+        gap: 30px;
+    }
+    header .subtitle {
+        white-space: normal; /* Le damos permiso de saltar de línea solo en el celular */
+        font-size: 0.8rem; /* Lo achicamos un poquito más */
+        line-height: 1.6; /* Separamos los renglones para que se lea fácil */
+        padding: 0 15px; /* Evita que el texto toque los bordes del teléfono */
+    }
+}
+
+/* Sección de "También en esta serie" */
+.related-series-section {
+    padding: 60px 10%;
+    border-top: 1px solid rgba(11, 39, 42, 0.1);
+    margin-top: 40px;
+    text-align: center;
+}
+
+.related-series-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: var(--secondary);
+    margin-bottom: 30px;
+}
+
+.related-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.related-item {
+    width: 120px; /* Tamaño pequeñito para las miniaturas */
+    transition: transform 0.3s ease;
+}
+
+.related-item img {
+    width: 100%;
+    aspect-ratio: 600 / 800;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.related-item:hover {
+    transform: translateY(-10px);
+}
+
+
+/* --- ESTILOS DE CONTACTO --- */
+.contact-page {
+    padding: 80px 10%;
+    background-color: var(--bg-color);
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.contact-intro {
+    margin-bottom: 40px;
+    color: var(--secondary);
+}
+
+.contact-form {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border: 1px solid var(--accent-2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--accent-2);
+    background-color: var(--bg-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--primary);
+    box-sizing: border-box; /* Importante para que no se desborde */
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.contact-form .read-chapter-btn {
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
