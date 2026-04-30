@@ -1,0 +1,606 @@
+/* =========================================
+   VARIABLES DE LA CAMPAÑA ARC
+   ========================================= */
+:root {
+    --cover-dark: #121A24; 
+    --cover-accent: #C5A059;
+    --cover-light: #F8F9FA;
+}
+
+/* =========================================
+   HERO DEL ARC (Separación Ajustada)
+   ========================================= */
+.arc-hero {
+    background-color: var(--cover-dark) !important;
+    color: white;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5% !important;
+    padding: 0% 8% !important;
+    margin: 0 !important;
+    min-height: 70vh;
+    overflow: hidden;
+}
+
+.arc-hero-content {
+    flex: 0 1 50% !important;
+    max-width: 600px;
+    z-index: 5;
+    margin-left: 4%;
+}
+
+.arc-subtitle {
+    color: var(--cover-accent);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.arc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.arc-synopsis {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.arc-hero-mockups {
+    flex: 0 1 50% !important;
+    max-width: 850px !important;
+    position: relative;
+    height: 450px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mockup-img {
+    position: absolute;
+    height: auto;
+    max-width: none !important;
+    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.6));
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tomo 1 (Frente) - AJUSTADO */
+.main-mockup {
+    width: 850px !important;
+    z-index: 2;
+    /* Aumentamos el translateX negativo para echarlo más a la izquierda */
+    /*transform: rotate(-5deg) translateX(-100px); */
+    margin-left: -400px;
+}
+
+/* Tomo 2 (Fondo) - AJUSTADO */
+.secondary-mockup {
+    width: 850px !important;
+    z-index: 1;
+    /* Aumentamos el translate positivo para abrir más el abanico */
+    /*transform: rotate(0deg) translate(200px, 20px) scale(0.95);*/
+    margin-left: 320px;
+}
+
+/* Efecto Hover: se separan al pasar el mouse */
+.arc-hero-mockups:hover .main-mockup {
+    transform: rotate(0deg) scale(1.05) translateX(0);
+    z-index: 3;
+}
+.arc-hero-mockups:hover .secondary-mockup {
+    transform: rotate(0deg) scale(1.05) translateX(0);
+}
+
+/* =========================================
+   AJUSTE DE FLUJO (HERO Y EDITORIAL)
+   ========================================= */
+
+/* Forzamos el contenedor principal a no envolver (wrap) en pantallas grandes */
+.arc-hero, .editorial-section {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* Prohíbe que el contenido salte abajo */
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 40px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Limitamos el ancho del texto para que deje espacio a las imágenes */
+.arc-hero-content, .editorial-text {
+    flex: 0 1 55% !important; /* No crece más del 55%, pero puede encogerse */
+    max-width: 650px !important; 
+    text-align: left !important;
+}
+
+/* Aseguramos que el contenedor de imágenes no empuje el layout */
+.arc-hero-mockups, .editorial-collage {
+    flex: 0 1 40% !important; /* No crece más del 40% */
+    max-width: 850px !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ajuste específico para que las imágenes del Hero no se desborden */
+.arc-hero-mockups {
+    min-height: 450px; /* Evita que el contenedor colapse */
+}
+
+/* =========================================
+   SECCIÓN EDITORIAL INMERSIVA (Full Width)
+   ========================================= */
+.editorial-fullscreen {
+    position: relative;
+    width: 100%;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* RECUERDA: Cambia el nombre de la imagen por el archivo que te generó FLOW */
+    background-image: url('images/landscape.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax al hacer scroll */
+}
+
+/* El matiz oscuro (Overlay degradado) */
+.editorial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(18, 26, 36, 0.95) 0%, 
+        rgba(18, 26, 36, 0.7) 50%, 
+        rgba(18, 26, 36, 0.4) 100%);
+    z-index: 1;
+}
+
+/* Contenedor invisible para centrar texto y fotos */
+.editorial-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 5%;
+    align-items: center;
+    width: 100%;
+    gap: 25%;
+}
+
+.editorial-text {
+    flex: 1;
+    color: #FFFFFF;
+    min-width: 300px;
+    margin-left: 5%;
+}
+
+.script-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.editorial-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--cover-accent);
+    margin-bottom: 25px;
+    border-left: 2px solid var(--cover-accent);
+    padding-left: 20px;
+}
+
+.editorial-desc {
+    color: var(--nav-bg); /* Beige suave de tu paleta */
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Contenedor del Collage Dinámico */
+.editorial-collage {
+    flex: 1;
+    position: relative;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    margin-left: -5%;
+}
+
+/* Fotos estilo Polaroid */
+.collage-photo {
+    position: absolute;
+    border: 10px solid white;
+    border-bottom-width: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-blake {
+    width: 250px;
+    top: 10%;
+    right: 400px;
+    transform: rotate(-6deg);
+    z-index: 2;
+}
+
+.photo-ryan {
+    width: 250px;
+    left: 30%;
+    transform: rotate(8deg);
+    z-index: 3;
+}
+
+.collage-photo:hover {
+    transform: rotate(0deg) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+/* =========================================
+   SECCIÓN DE SINOPSIS Y DETALLES
+   ========================================= */
+.arc-info-synopsis {
+    background-color: var(--cover-light);
+    padding: 80px 5% !important;
+}
+
+.synopsis-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    max-width: 1800px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* Columna Izquierda (Texto) */
+.synopsis-text-col {
+    flex: 1.2;
+}
+
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--cover-dark);
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--cover-accent);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* ESTILO ESPECIAL PARA LA PRIMERA PARTE */
+.synopsis-lead {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--cover-accent);
+    line-height: 1.5;
+    display: block; /* Lo separa del resto del párrafo */
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.synopsis-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Columna Derecha (Imagen y Cajitas) */
+.synopsis-visual-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.parasin-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+/* Cajitas de Información - Ahora en horizontal */
+.info-grid {
+    display: flex;
+    flex-direction: row; /* Cambiado de column a row */
+    gap: 20px; /* Un poco más de espacio entre cajitas */
+    justify-content: space-between;
+    align-items: stretch; /* Para que todas tengan la misma altura */
+    margin-top: 50px;
+}
+
+.info-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px; /* Un poco más redondeado para estilo tarjeta */
+    border-left: none; /* Quitamos el borde lateral */
+    border-top: 4px solid var(--cover-dark); /* Borde arriba para que parezca cajita */
+    display: flex;
+    flex-direction: column; /* Icono arriba, texto abajo */
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    flex: 1; /* Esto obliga a que todas las cajas midan lo mismo */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-8px); /* Ahora sube en lugar de ir a la derecha */
+    border-top-color: var(--cover-accent);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.info-icon {
+    font-size: 2rem; /* Un poco más grande ya que está centrada */
+}
+
+.info-item div {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.info-item strong {
+    color: var(--cover-dark);
+    display: block; /* Para que el título esté en su propia línea */
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   ESTILOS DEL FORMULARIO
+   ========================================= */
+.form-section {
+    padding: 80px 5%;
+    background-color: var(--cover-dark);
+    display: flex;
+    justify-content: center;
+}
+.arc-form-container { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+    width: 100%; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+.form-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--cover-dark);
+}
+
+.form-group { 
+    margin-bottom: 20px; 
+    text-align: left; 
+}
+
+.form-group label { 
+    display: block; 
+    font-weight: 700; 
+    margin-bottom: 8px; 
+    font-size: 0.9rem; 
+    color: var(--cover-dark);
+}
+
+.form-group-arc input, 
+.form-group-arc textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--cover-dark);
+    background-color: #e8f1fa;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--primary);
+    box-sizing: border-box; /* Importante para que no se desborde */
+}
+
+
+.form-control { 
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--cover-accent);
+}
+
+.checkbox-label { 
+    display: flex; 
+    align-items: flex-start; /* Mantiene el círculo arriba si el texto es largo */
+    gap: 12px; /* <--- Esto controla la distancia exacta. Puedes bajarlo a 8px si lo quieres más cerca */
+    font-weight: 400 !important; 
+    cursor: pointer; 
+    margin-bottom: 12px !important; 
+    width: fit-content; /* <--- Esto evita que el label se estire a todo lo ancho */
+    line-height: 1.4;
+}
+
+.checkbox-label input {
+    margin: 0; /* Quitamos márgenes automáticos */
+    margin-top: 3px; /* Ajuste fino para que el círculo quede centrado con la primera línea de texto */
+    accent-color: var(--cover-accent);
+    flex-shrink: 0; /* <--- IMPORTANTE: Evita que el círculo se aplaste si el texto es mucho */
+    width: 16px; /* Tamaño estándar limpio */
+    height: 16px;
+}
+
+.help-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.btn-submit { 
+    width: 100%; 
+    padding: 18px; 
+    background: var(--cover-dark); 
+    color: white; 
+    border: none; 
+    font-weight: 700; 
+    letter-spacing: 2px;
+    cursor: pointer; 
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.btn-submit:hover { 
+    background: var(--cover-accent); 
+}
+
+.contact-form-arc {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border: 1px solid var(--cover-dark);
+}
+
+/* =========================================
+   RESPONSIVO UNIFICADO (MÓVILES Y TABLETS)
+   ========================================= */
+
+/* 1. TABLETS Y PANTALLAS MEDIANAS (Hasta 900px) */
+@media (max-width: 900px) {
+    /* Flujo general: Pasar de fila a columna */
+    .arc-hero, .editorial-container, .editorial-section {
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+    
+    /* Reseteamos los anchos y márgenes laterales de PC */
+    .arc-hero-content, .editorial-text, 
+    .arc-hero-mockups, .editorial-collage {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important; 
+    }
+    
+    /* Ajustes Editorial Básicos */
+    .editorial-fullscreen {
+        min-height: auto;
+        padding: 20px 0px 320px 0px;
+    }
+    .editorial-text {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    .editorial-quote {
+        border-left: none;
+        border-top: 3px solid var(--cover-accent);
+        padding-left: 0;
+        padding-top: 15px;
+    }
+    
+    /* Ajuste de altura de contenedores visuales */
+    .arc-hero-mockups {
+        margin-top: 20px;
+        min-height: 400px;
+    }
+    .editorial-collage {
+        height: 400px;
+    }
+}
+
+/* 2. TELÉFONOS MÓVILES (Hasta 768px) */
+@media (max-width: 768px) {
+    /* Ajuste de Textos y Formularios */
+    .script-title { font-size: 2.8rem; }
+    .arc-title { font-size: 2.8rem; }
+    .arc-form-container { padding: 30px 20px; }
+
+    /* Cajitas de Info (Volver a formato lista vertical) */
+    .info-grid {
+        flex-direction: column;
+    }
+    .info-item {
+        border-top: none;
+        border-left: 4px solid var(--cover-dark);
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+    }
+
+    /* -----------------------------------------
+       ARREGLO 1: PORTADAS (LIBROS)
+       ----------------------------------------- */
+    .arc-hero-mockups { 
+        min-height: 250px; /* Reducimos altura para que suban hacia el texto */
+        margin-top: 0px; 
+    }
+    .main-mockup { 
+        width: 320px !important; /* Tamaño adaptado a celular */
+        margin-left: -130px !important; /* Cruzamos el tomo 1 sutilmente a la izquierda */
+        transform: none !important; /* Quitamos rotaciones locas de PC */
+        z-index: 2;
+    }
+    .secondary-mockup { 
+        width: 300px !important; 
+        margin-left: 80px !important; /* Cruzamos el tomo 2 sutilmente a la derecha */
+        margin-top: -10px !important; /* Lo subimos un poco para efecto de profundidad */
+        transform: none !important;
+        z-index: 1;
+    }
+
+    /* -----------------------------------------
+       ARREGLO 2: FOTOS (BLAKE Y RYAN)
+       ----------------------------------------- */
+    .editorial-collage { 
+        height: 260px; /* Reducimos el contenedor para que no quede espacio vacío */
+        margin-top: 10px;
+    }
+    .collage-photo {
+        border-width: 5px; /* Borde blanco más delgado */
+        border-bottom-width: 20px; /* Borde inferior tipo polaroid reducido */
+    }
+    .photo-blake { 
+        width: 140px !important; /* Fotos mucho más pequeñas */
+        left: -3% !important; /* Anclado al centro-izquierdo de la pantalla */
+        right: auto !important;
+        top: 10% !important;
+        transform: rotate(-8deg);
+    }
+    .photo-ryan { 
+        width: 140px !important; 
+        right: -3% !important; /* Anclado al centro-derecho de la pantalla */
+        left: auto !important;
+        top: 25% !important; /* Ryan se posiciona un poco más abajo que Blake */
+        transform: rotate(6deg);
+    }
+}
