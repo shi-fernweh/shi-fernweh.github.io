@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | SHI FERNWEH.</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">SHI FERNWEH</a>
+            <button class="menu-toggle" id="mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="sobremi.html">SOBRE MÍ</a></li>
+                <li><a href="libros.html">LIBROS</a></li>
+                <li><a href="arc.html">TEAM ARC</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="contact-page">
+        <section class="contact-container">
+            <h1>Contacto</h1>
+            <p class="contact-intro">¿Tienes alguna duda, propuesta editorial o simplemente quieres saludar? Escríbeme y te responderé lo antes posible.</p>
+            
+            <form action="https://formspree.io/f/maqajzek" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="full-name">Nombre completo</label>
+                    <input type="text" name="name" id="full-name" placeholder="Ej. Juana Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email-address">Correo electrónico</label>
+                    <input type="email" name="_replyto" id="email-address" placeholder="tu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tu mensaje</label>
+                    <textarea name="message" id="message" rows="6" placeholder="Escribe aquí tu mensaje..." required></textarea>
+                </div>
+
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde la Web de Autora">
+                <input type="text" name="_gotcha" style="display:none">
+
+
+                <button type="submit" class="read-chapter-btn">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <span class="footer-logo">SHI FERNWEH</span>
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.goodreads.com/author/show/65057286.SHI_FERNWEH_" class="btn-social" target="_blank" rel="noopener noreferrer">Goodreads</a>
+            <a href="https://patreon.com/shifernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Patreon</a>
+            <a href="https://www.amazon.com/author/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Amazon</a>
+            <a href="https://booknet.com/es/shi-fernweh-u10182171" class="btn-social" target="_blank" rel="noopener noreferrer">Booknet</a>
+        </div>
+        <p class="copy">&copy; <span id="current-year"></span> Shi Fernweh. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+
+    <div id="thanksModal" class="modal-overlay">
+        <div class="modal-content" style="height: auto; text-align: center;">
+            <h2 class="chapter-title">¡Mensaje Enviado!</h2>
+            <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 30px;">
+                Gracias por escribir, Shi. Tu mensaje ha sido recibido correctamente y te responderé lo antes posible.
+            </p>
+            <button id="closeThanks" class="read-chapter-btn">Aceptar</button>
+        </div>
+    </div>
+</body>
+</html>
