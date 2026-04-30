@@ -257,7 +257,7 @@ h2 {
 
 .cover-placeholder {
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 2 / 3; /* Forzamos la proporción universal de portadas literarias */
     background-color: var(--accent-2);
     overflow: hidden;
     margin-bottom: 15px;
@@ -268,18 +268,22 @@ h2 {
 }
 
 .cover-uped {
-    aspect-ratio: auto;
-    height: auto;
+    /* Dejamos esta clase vacía para anular el height: auto que rompía la simetría */
 }
 
 /* Ajuste de la imagen dentro del recuadro */
 .cover-placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Para que rellene el cuadro sin deformarse */
+    object-fit: cover; /* EL TRUCO: Rellena la caja perfecta y si sobra algo, lo recorta invisiblemente sin deformar tu portada */
+    object-position: center; /* Asegura que el centro de la imagen siempre sea lo principal */
     display: block;
 }
-
+.cover-placeholder a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 .release-date {
     font-weight: 700;
     font-size: 0.8rem;
