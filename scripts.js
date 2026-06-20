@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         yearElement.textContent = currentYear;
     }
 
-
     // Configuración del observador para la animación de las portadas
     const observerOptions = {
         threshold: 0.15 // Se activa cuando el 15% de la portada es visible en pantalla
@@ -33,8 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const hiddenElements = document.querySelectorAll('.zoom-in-element');
     hiddenElements.forEach((el) => observer.observe(el));
 
-
-
     // --- Lógica del Modal de Lectura ---
     const modal = document.getElementById("chapterModal");
     const btn = document.getElementById("openModal");
@@ -42,15 +39,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (btn && modal) {
         btn.addEventListener("click", function(e) {
-            e.preventDefault(); // <-- ESTA LÍNEA ES LA CLAVE
+            e.preventDefault(); 
             modal.style.display = "block";
             document.body.style.overflow = "hidden";
         });
 
-        span.addEventListener("click", function() {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
+        if(span) {
+            span.addEventListener("click", function() {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            });
+        }
 
         window.addEventListener("click", function(event) {
             if (event.target == modal) {
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-
     // Lógica para Menú Hamburguesa en Móvil
     const menuToggle = document.getElementById("mobile-menu");
     const navLinks = document.querySelector(".nav-links");
@@ -68,81 +66,93 @@ document.addEventListener("DOMContentLoaded", function() {
     if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", function() {
             navLinks.classList.toggle("active");
-            
-            // Animación opcional de las rayitas (se cruzan al abrir)
             menuToggle.classList.toggle("is-active");
         });
     }
 
-
-    // Lógica para envío de formulario por AJAX y Modal de Gracias
-    const contactForm = document.querySelector('.contact-form');
-    const thanksModal = document.getElementById('thanksModal');
-    const closeThanks = document.getElementById('closeThanks');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Evita que la página se recargue
-
-            const data = new FormData(this);
-            const response = await fetch(this.action, {
-                method: this.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                // Si el envío fue exitoso
-                this.reset(); // Limpia los campos del formulario
-                thanksModal.style.display = "block"; // Muestra el modal de gracias
-                document.body.style.overflow = "hidden"; // Bloquea scroll
-            } else {
-                // Si algo falla
-                alert("Huy, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.");
-            }
-        });
-    }
-
-    // Cerrar el modal de gracias
-    if (closeThanks) {
-        closeThanks.onclick = function() {
-            thanksModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-    }
-
-
+    // --- Lógica de Botón Volver ---
     const backBtn = document.getElementById("dynamicBackBtn");
-    
-    // document.referrer guarda la URL de la página de la que viene el usuario
     const previousPage = document.referrer; 
 
-    // Verificamos si el botón existe para que no de error en otras páginas
     if (backBtn) {
         if (previousPage.includes("series.html")) {
-            // Si viene de series, cambiamos la ruta y el texto
             backBtn.href = "../series.html";
             backBtn.textContent = "← Volver a Series";
         } else {
-            // Si viene de libros, o de un link externo directo (Instagram, etc.),
-            // lo dejamos con el default que ya pusimos en el HTML: Volver a Libros.
             backBtn.href = "../libros.html";
             backBtn.textContent = "← Volver a Libros";
         }
     }
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwwXbPZwLza9R_ZmeX-vL9p16GyJJzGZm30uL-gHmq_3946hZlPhX8MYFK_P2AmK7XT/exec'
-    const form = document.forms['arc-form']
+    // =========================================================================
+    // --- LÓGICA UNIFICADA PARA EL FORMULARIO DE CONVOCATORIA / COLABORACIÓN ---
+    // =========================================================================
+    const arcForm = document.getElementById('arc-form');
+    const thanksModal = document.getElementById('thanksModal');
+    const closeThanks = document.getElementById('closeThanks');
 
-    form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => alert("¡Gracias! Tu solicitud ha sido enviada con éxito."))
-        .catch(error => console.error('Error!', error.message))
-    })
+    if (arcForm) {
+        arcForm.addEventListener('submit', async function(e) {
+            // 1. ESTO EVITA LA PANTALLA NEGRA
+            e.preventDefault();
+            
+            // 2. Capturamos los datos
+            const formData = new FormData(arcForm);
+            
+            // Opcional: Cambiar el texto del botón mientras se envía para que el usuario sepa que está cargando
+            const submitBtn = arcForm.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            if(submitBtn) {
+                submitBtn.textContent = "ENVIANDO...";
+                submitBtn.style.opacity = "0.7";
+                submitBtn.disabled = true;
+            }
+
+            try {
+                // 3. Enviamos los datos usando la URL que ya tienes en el atributo "action" de tu HTML
+                const response = await fetch(arcForm.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // 4. Si todo sale bien, mostramos tu modal de agradecimiento
+                    if (thanksModal) {
+                        thanksModal.style.display = "block";
+                        document.body.style.overflow = "hidden"; // Bloquea scroll del fondo
+                    }
+                    arcForm.reset(); // Limpiamos el formulario
+                } else {
+                    alert("Hubo un error al enviar tu propuesta. Inténtalo de nuevo.");
+                }
+            } catch (error) {
+                console.error('Error en el envío:', error);
+                alert("Hubo un problema de conexión. Por favor, revisa tu internet e inténtalo de nuevo.");
+            } finally {
+                // 5. Restauramos el botón a la normalidad
+                if(submitBtn) {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.opacity = "1";
+                    submitBtn.disabled = false;
+                }
+            }
+        });
+    }
+
+    // Lógica para cerrar el modal de gracias
+    if (closeThanks && thanksModal) {
+        closeThanks.onclick = function() {
+            thanksModal.style.display = "none";
+            document.body.style.overflow = "auto"; // Restaura el scroll
+        }
+        
+        // También cerramos el modal si hacen clic fuera de la cajita blanca
+        window.addEventListener("click", function(event) {
+            if (event.target == thanksModal) {
+                thanksModal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    }
 
 });
-
-

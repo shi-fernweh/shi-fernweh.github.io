@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaboraciones | SHI FERNWEH.</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="convocatoria.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">SHI FERNWEH.</a>
+            
+            <button class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="sobremi.html">SOBRE MÍ</a></li>
+                <li><a href="libros.html">LIBROS</a></li>
+                <li><a href="convocatoria.html">CONVOCATORIA AUTORES INDIE</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-container arc-hero">
+            <div>
+                <p class="arc-subtitle" style="color: var(--cover-accent); margin-bottom: 10px;">Convocatoria de colaboraciones</p>
+                <h1 style="margin-bottom: 20px;font-family: 'Montserrat', sans-serif;letter-spacing: 0px;" class="arc-title">Busco novelas que me hagan soñar</h1>
+                <p class="arc-synopsis">
+                    Busco autores autopublicados en Amazon (de preferencia) para colaborar.
+                </p>
+                <p class="arc-synopsis">
+                    Estoy buscando autores independientes comprometidos para colaboraciones. Leeré tu novela y la reseñaré, tanto en mi perfil de Instagram, como en Facebook, y en Goodreads. Además, compartiré mis avances en mis historias. Las reseñas serán publicadas según termine de leer las novelas, entre los meses de julio y agosto.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-container arc-info-synopsis">
+            <div class="synopsis-layout">
+                
+                <div class="synopsis-text-col">
+                    <h2 class="section-heading">Requisitos</h2>
+                    <div class="synopsis-content" style="text-align: center;">
+                       <p style="text-align: center;">1. Seguirme en Instagram.</p>
+                       <p style="text-align: center;">2. Obra terminada (cualquier género es bienvenido).</p>
+                       <p style="text-align: center;">3. Aquí abajo encuentras el formulario, rellénalo con cuidado.
+                       <p style="text-align: center;">4. Haz clic en «Enviar»... ¡Y listo!</p>
+                       <p style="text-align: center;">5. Te estaré contactando vía dm de Instagram.</p>                   
+                    </div>
+
+
+                </div>               
+            </div>
+        </section>
+
+
+        <section class="section-container form-section">
+            <div class="arc-form-container">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--cover-dark)">Postula tu novela para colaboración</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Soy un poco obsesiva con el orden, así que, por favor, llena este formulario, así obtendré la información de tu historia sin contratiempos.</p>
+                
+                <!-- IMPORTANTE: El action lo cambiaremos en el paso de Google Sheets -->
+                <form id="arc-form" class="contact-form-arc" action="https://script.google.com/macros/s/AKfycbyEg4TqqZG06zcF_iNJLUY9o4kkRyGfNK96BZdObszGIqrHbE1tF5SzM7ag7u9mLfOj9A/exec" method="POST">
+                    
+                    <div class="form-group-arc">
+                        <label for="nombre">Tu Nombre de Autor *</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="correo">Correo Electrónico *</label>
+                        <input type="email" id="correo" name="correo" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="titulo_libro">Título de la novela que quieres proponer *</label>
+                        <input type="text" id="titulo_libro" name="titulo_libro" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="link_libro">Enlace a tu libro en Amazon *</label>
+                        <input type="url" id="link_libro" name="link_libro" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="link_instagram">Enlace a tu perfil de Instagram *</label>
+                        <input type="url" id="link_instagram" name="link_instagram" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="genero">Género(s) principal(es) *</label>
+                        <input type="text" id="genero" name="genero" placeholder="Ej: Fantasía oscura, Romance paranormal..." class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="sinopsis">Sinopsis (¡Engánchame!) *</label>
+                        <textarea id="sinopsis" name="sinopsis" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label for="triggers">Advertencias de contenido (Triggers) *</label>
+                        <input type="text" id="triggers" name="triggers" placeholder="Si no tiene, escribe 'Ninguna'" class="form-control" required>
+                    </div>
+
+                    <div class="form-group-arc">
+                        <label>Acuerdos del Intercambio *</label>
+                        <div class="checkbox-group" style="margin-top: 15px;">
+                            <label class="checkbox-label"><input type="checkbox" required> Entiendo que esta es una colaboración no remunerada.</label>
+                            <label class="checkbox-label"><input type="checkbox" required> Entiendo que los cupos son limitados y seré contactado si hacemos "match".</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">ENVIAR</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Agradecimiento -->
+    <div id="thanksModal" class="modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8);">
+<div class="modal-content" style="background-color: #fff; padding: 25px 40px; border-radius: 8px; max-width: 500px; text-align: center; position: relative;">            <span class="close-modal" id="closeThanks" style="position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer;">&times;</span>
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 15px; color: #121A24;">¡Propuesta Recibida!</h2>
+            <p>Gracias por querer hacer equipo. Revisaré tu novela y me pondré en contacto contigo muy pronto a través de tu correo o Instagram.</p>
+        </div>
+    </div>
+    <footer id="contacto">
+        <span class="footer-logo">SHI FERNWEH.</span>
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.goodreads.com/author/show/65057286.SHI_FERNWEH_" class="btn-social" target="_blank" rel="noopener noreferrer">Goodreads</a>
+            <a href="https://patreon.com/shifernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Patreon</a>
+            <a href="https://www.amazon.com/author/shi.fernweh" class="btn-social" target="_blank" rel="noopener noreferrer">Amazon</a>
+            <a href="https://booknet.com/es/shi-fernweh-u10182171" class="btn-social" target="_blank" rel="noopener noreferrer">Booknet</a>
+        </div>
+        <p class="copy">&copy; <span id="current-year"></span> SHI FERNWEH. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
